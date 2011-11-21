@@ -5,12 +5,12 @@
 #include <mmsystem.h>
 #include <conio.h>
 
-const char SQUARE = 219;
-const char LEFT   = 221;
-const char RIGHT  = 222;
-const char TOP    = 223;
-const char BOTTOM = 220;
-const char BLANK  = ' ';
+const unsigned char SQUARE = 219;
+const unsigned char LEFT   = 221;
+const unsigned char RIGHT  = 222;
+const unsigned char TOP    = 223;
+const unsigned char BOTTOM = 220;
+const unsigned char BLANK  = ' ';
 
 
 enum ink 
