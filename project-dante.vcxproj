@@ -70,9 +70,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="plotter.cpp" />
+    <ClCompile Include="puck.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blocks.h" />
+    <ClInclude Include="level.h" />
+    <ClInclude Include="paddle.h" />
     <ClInclude Include="plotter.h" />
+    <ClInclude Include="puck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,9 +21,24 @@
     <ClCompile Include="plotter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="puck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plotter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="puck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paddle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blocks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
