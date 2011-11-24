@@ -1,3 +1,6 @@
+#ifndef PUCK_H
+#define PUCK_H
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -20,3 +23,5 @@ class Puck
 		double getMY();
 		string toString();
 };
+
+#endif
