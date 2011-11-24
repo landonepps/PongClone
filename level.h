@@ -2,7 +2,7 @@
 #include <string>
 #include "puck.h"
 #include "paddle.h"
-#include "blocks.h"
+#include "block.h"
 #include "plotter.h"
 
 using namespace std;
@@ -12,22 +12,22 @@ class Level
 	private:
 		Puck puck;
 		Paddle paddle;
-		Blocks blocks;
+		Block block;
 		Plotter plot;
 	public:
 		Level();
-		Level(Puck, Paddle, Blocks);
+		Level(Puck, Paddle, Block);
 		~Level();
 
 		void setPuck(Puck);
 		void setPaddle(Paddle);
-		void setBlocks(Blocks);
+		void setBlock(Block);
 		//setLevel is used to read in our level file.
 		void setLevel(istream);
 
 		Puck getPuck();
 		Paddle getPaddle();
-		Blocks getBlocks();
+		Block getBlock();
 		//drawLevel is used to output our level file.
 		string drawLevel();
 		void runLevel();
@@ -36,7 +36,7 @@ class Level
 		string startLevel();
 		string endLevel();
 		//Or we can do both in nextLevel which will start the next
-		//level depending if all blocks are destroyed and end when 
-		//all blocks are destroyed.
+		//level depending if all block are destroyed and end when 
+		//all block are destroyed.
 		string nextLevel();
 }
