@@ -36,7 +36,7 @@ class Level
 		string startLevel();
 		string endLevel();
 		//Or we can do both in nextLevel which will start the next
-		//level depending if all block are destroyed and end when 
-		//all block are destroyed.
+		//level depending if all blocks are destroyed and end when 
+		//all blocks are destroyed.
 		string nextLevel();
 }

@@ -68,16 +68,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="plotter.cpp" />
     <ClCompile Include="puck.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="blocks.h" />
+    <ClInclude Include="block.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="paddle.h" />
     <ClInclude Include="plotter.h" />
     <ClInclude Include="puck.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
