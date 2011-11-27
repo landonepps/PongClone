@@ -2,15 +2,17 @@
 
 using namespace std;
 
-Level::Level()
+Level::Level(int levelNumber)
 {
+	levelNum = levelNumber;
 }
 
-Level::Level(Puck puck1, Paddle paddle1, Block block1)
+Level::Level(Puck puck1, Paddle paddle1, Block block1, int levelNumber)
 {
 	puck = puck1;
 	paddle = paddle1;
 	block = block1;
+	levelNum = levelNumber;
 }
 
 Level::~Level()
@@ -33,7 +35,7 @@ void Level::setBlock(Block block1)
 }
 
 //setLevel is used to read in our level file.
-void Level::setLevel(istream &stream)
+void Level::setLevel(istream &levelFile)
 {
 	//
 }
@@ -66,9 +68,9 @@ void Level::runLevel()
 
 //We can either use startLevel to display the splash screen
 //and keep the game running until endLevel is called.
-void Level::startLevel()
+void Level::startLevel(istream &splashFile)
 {
-
+	//
 }
 
 void Level::endLevel()

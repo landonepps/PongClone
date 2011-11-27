@@ -10,13 +10,14 @@ using namespace std;
 class Level
 {
 	private:
+		int levelNum;
 		Puck puck;
 		Paddle paddle;
 		Block block;
 		Plotter plot;
 	public:
-		Level();
-		Level(Puck, Paddle, Block);
+		Level(int levelNumber);
+		Level(Puck, Paddle, Block, int);
 		~Level();
 
 		void setPuck(Puck);
@@ -33,7 +34,7 @@ class Level
 		void runLevel();
 		//We can either use startLevel to display the splash screen
 		//and keep the game running until endLevel is called.
-		void startLevel();
+		void startLevel(istream &);
 		void endLevel();
 		//Or we can do both in nextLevel which will start the next
 		//level depending if all blocks are destroyed and end when 
