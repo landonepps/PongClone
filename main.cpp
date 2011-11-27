@@ -1,12 +1,43 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <limits>
+#include <stdexcept>
+#include <Windows.h>
 #include "level.h"
 
 using namespace std;
 
 //The total number of levels
 const int MAXLEVEL=1;
+
+struct console
+  {
+	console( unsigned width, unsigned height )
+    {	
+		HANDLE hCon;
+		CONSOLE_SCREEN_BUFFER_INFO csbi;
+		SMALL_RECT rect;
+		COORD      c;
+		hCon = GetStdHandle( STD_OUTPUT_HANDLE );
+
+		rect.Left   = 0;
+		rect.Top    = 0;
+		rect.Right  = width -1;
+		rect.Bottom = height -1;
+		SetConsoleWindowInfo( hCon, TRUE, &rect );
+
+		c.X = width;
+		c.Y = height;
+		SetConsoleScreenBufferSize( hCon, c );
+	}
+
+	~console()
+	{
+    }
+  };
+
+console con(80, 30);
 
 int main ()
 {
@@ -43,7 +74,11 @@ int main ()
 		}
 
 		//starts level
-		level.startLevel(splashFile);
+		level.startLevel(splashFile, cout);
+
+		system ("PAUSE");
+
+		level.clearScreen();
 	}
 	return 0;
 }

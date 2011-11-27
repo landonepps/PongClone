@@ -2,13 +2,17 @@
 
 using namespace std;
 
+const int SCREENLENGTH = 60;
+
 Level::Level(int levelNumber)
 {
+	isRunning = false;
 	levelNum = levelNumber;
 }
 
 Level::Level(Puck puck1, Paddle paddle1, Block block1, int levelNumber)
 {
+	isRunning = false;
 	puck = puck1;
 	paddle = paddle1;
 	block = block1;
@@ -66,11 +70,21 @@ void Level::runLevel()
 
 }
 
+void Level::clearScreen()
+{
+	plot.clear();
+}
+
 //We can either use startLevel to display the splash screen
 //and keep the game running until endLevel is called.
-void Level::startLevel(istream &splashFile)
+void Level::startLevel(istream &splashFile, ostream &outStream)
 {
-	//
+	isRunning = true;
+	string tempString;
+	while (getline(splashFile, tempString))
+	{
+		outStream << tempString << endl;
+	}
 }
 
 void Level::endLevel()
