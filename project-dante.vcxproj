@@ -68,8 +68,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="block.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="paddle.cpp" />
     <ClCompile Include="plotter.cpp" />
     <ClCompile Include="puck.cpp" />
   </ItemGroup>

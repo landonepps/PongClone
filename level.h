@@ -23,20 +23,20 @@ class Level
 		void setPaddle(Paddle);
 		void setBlock(Block);
 		//setLevel is used to read in our level file.
-		void setLevel(istream);
+		void setLevel(istream &);
 
 		Puck getPuck();
 		Paddle getPaddle();
 		Block getBlock();
 		//drawLevel is used to output our level file.
-		string drawLevel();
+		void drawLevel();
 		void runLevel();
 		//We can either use startLevel to display the splash screen
 		//and keep the game running until endLevel is called.
-		string startLevel();
-		string endLevel();
+		void startLevel();
+		void endLevel();
 		//Or we can do both in nextLevel which will start the next
 		//level depending if all blocks are destroyed and end when 
 		//all blocks are destroyed.
-		string nextLevel();
-}
+		void nextLevel();
+};
