@@ -56,7 +56,11 @@ Block Level::getBlock()
 //drawLevel is used to output our level file.
 void Level::drawLevel(istream &levelFile)
 {
-	
+	int ifBlock;
+	while(levelFile >> ifBlock)
+	{
+
+	}
 }
 
 void Level::runLevel()
