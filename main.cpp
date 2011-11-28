@@ -37,7 +37,7 @@ struct console
     }
   };
 
-console con(80, 30);
+console con(79, 30);
 
 int main ()
 {
