@@ -26,13 +26,12 @@ class Level
 		void setPaddle(Paddle);
 		void setBlock(Block);
 		//setLevel is used to read in our level file.
-		void setLevel(istream &);
 
 		Puck getPuck();
 		Paddle getPaddle();
 		Block getBlock();
 		//drawLevel is used to output our level file.
-		void drawLevel();
+		void drawLevel(istream &levelFile);
 		void runLevel();
 		void clearScreen();
 		//We can either use startLevel to display the splash screen

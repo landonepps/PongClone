@@ -38,12 +38,6 @@ void Level::setBlock(Block block1)
 	block = block1;
 }
 
-//setLevel is used to read in our level file.
-void Level::setLevel(istream &levelFile)
-{
-	//
-}
-
 Puck Level::getPuck()
 {
 	return puck;
@@ -60,7 +54,7 @@ Block Level::getBlock()
 }
 
 //drawLevel is used to output our level file.
-void Level::drawLevel()
+void Level::drawLevel(istream &levelFile)
 {
 	
 }

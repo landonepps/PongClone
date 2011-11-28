@@ -59,7 +59,7 @@ int main ()
 		}
 
 		//gives the level the level file
-		level.setLevel(levelFile);
+		level.drawLevel(levelFile);
 
 		//opens the splashscreen file
 		//naming convention is splash<levelNumber>.txt
