@@ -57,16 +57,30 @@ Block Level::getBlock()
 void Level::drawLevel(istream &levelFile)
 {
 	//color bg
-	for (int i = 0; i < 80; i++)
+	if (levelNum <= 3)
 	{
-		for (int j = 0; j < 30; j++)
+		for (int i = 0; i < 80; i++)
 		{
-			plot.setColor(cyan);
-			plot.plot(i, j, SQUARE);
+			for (int j = 0; j < 30; j++)
+			{
+				plot.setColor(cyan);
+				plot.plot(i, j, SQUARE);
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < 80; i++)
+		{
+			for (int j = 0; j < 30; j++)
+			{
+				plot.setColor(red);
+				plot.plot(i, j, SQUARE);
+			}
 		}
 	}
 
-	//draw walls
+	//draw left wall
 	for (int i = 0; i < 29; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -77,12 +91,12 @@ void Level::drawLevel(istream &levelFile)
 			}
 			else
 			{
-				plot.setColor(red);
+				plot.setColor(yellow);
 			}
 			plot.plot(j,i, SQUARE);
 		}
 	}
-
+	//draw right wall
 	for (int i = 0; i < 29; i++)
 	{
 		for (int j = 78; j < 80; j++)
@@ -93,7 +107,7 @@ void Level::drawLevel(istream &levelFile)
 			}
 			else
 			{
-				plot.setColor(red);
+				plot.setColor(yellow);
 			}
 			plot.plot(j,i, SQUARE);
 		}
