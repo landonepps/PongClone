@@ -4,12 +4,16 @@
 #include <limits>
 #include <stdexcept>
 #include <Windows.h>
+#include <MMSystem.h>
 #include "level.h"
+
+#pragma comment(lib,"Winmm.lib")
 
 using namespace std;
 
 //The total number of levels
 const int MAXLEVEL=1;
+const unsigned width = 79, height = 30;
 
 struct console
   {
@@ -37,10 +41,11 @@ struct console
     }
   };
 
-console con(79, 30);
+console con(80, 30);
 
 int main ()
 {
+	PlaySound("./launch.wav", NULL, SND_FILENAME | SND_ASYNC);
 	for (int levelNum=1; levelNum<=MAXLEVEL; levelNum++)
 	{
 		//Create a new level and tell it which number it is
@@ -58,8 +63,7 @@ int main ()
 			return 1;
 		}
 
-		//gives the level the level file
-		level.drawLevel(levelFile);
+		
 
 		//opens the splashscreen file
 		//naming convention is splash<levelNumber>.txt
@@ -76,7 +80,12 @@ int main ()
 		//starts level
 		level.startLevel(splashFile, cout);
 
-		system ("PAUSE");
+		_getch();
+				level.clearScreen();
+		//gives the level the level file
+		level.drawLevel(levelFile);
+
+		_getch();
 
 		level.clearScreen();
 	}

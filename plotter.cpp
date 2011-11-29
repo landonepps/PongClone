@@ -29,7 +29,7 @@ void Plotter::plot(int x, int y, char c)
        coordScreen.Y = y;
        //SetConsoleTextAttribute(hConsoleOutput, c);     
        SetConsoleCursorPosition( hConsoleOutput, coordScreen );
-       cout  << c;
+       cout << c;
        cout.flush();
 }
 
