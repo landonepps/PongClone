@@ -19,9 +19,7 @@ class Level
 		Plotter plot;
 	public:
 		Level(int levelNumber);
-		Level(Puck, Paddle, Block, int);
 		~Level();
-
 		void setPuck(Puck);
 		void setPaddle(Paddle);
 		void setBlock(Block);

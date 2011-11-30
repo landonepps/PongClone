@@ -10,15 +10,6 @@ Level::Level(int levelNumber)
 	levelNum = levelNumber;
 }
 
-Level::Level(Puck puck1, Paddle paddle1, Block block1, int levelNumber)
-{
-	isRunning = false;
-	puck = puck1;
-	paddle = paddle1;
-	block = block1;
-	levelNum = levelNumber;
-}
-
 Level::~Level()
 {
 }
