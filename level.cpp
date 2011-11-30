@@ -182,54 +182,54 @@ void Level::moveLeft()
 {
 		int x = paddle.getX();
 		int y = paddle.getY();
-	if(x > 3)
-	{
-		Plotter plotter;
-        x -= 1;
-		plotter.setColor(yellow);
-        plotter.move(x,y);
 
-		for (int i = 0; i < 6; i++)
+		if (x > 3)
 		{
-				plotter.plot(x + i,y,SQUARE); 
+			Plotter plotter;
+			x -= 1;
+			plotter.setColor(yellow);
+			plotter.move(x,y);
+			for (int i = 0; i < 6; i++)
+			{
+			plotter.plot(x+i, y, SQUARE);
+			}
+			if (levelNum <= 3)
+			{
+				plotter.setColor(cyan);
+			}
+			else
+			{
+				plotter.setColor(red);
+			}
+			plotter.plot(x+6,y,SQUARE);
+			paddle.setXY(x,y);
 		}
-		if (levelNum <= 3)
-		{
-			plotter.setColor(cyan);
-		}
-		else
-		{
-			plotter.setColor(red);
-		}
-		plotter.plot(x+6,y,SQUARE);
-		paddle.setXY(x,y);
-	}
 }
 
 void Level::moveRight()
 {
 		int x = paddle.getX();
 		int y = paddle.getY();
-	if(x < 72)
-	{
-		Plotter plotter;
-        x += 1;
-		plotter.setColor(yellow);
-        plotter.move(x,y);
 
-        for (int i = 0; i < 6; i++)
+		if (x < 72)
 		{
-				plotter.plot(x + i,y,SQUARE); 
-		}
-		if (levelNum <= 3)
-		{
-			plotter.setColor(cyan);
-		}
-		else
-		{
-			plotter.setColor(red);
-		}
-		plotter.plot(x-1,y,SQUARE);
-		paddle.setXY(x,y);
+			Plotter plotter;
+			x += 1;
+			plotter.setColor(yellow);
+			plotter.move(x,y);
+			for (int i = 0; i < 6; i++)
+			{
+			plotter.plot(x+i, y, SQUARE);
+			}
+			if (levelNum <= 3)
+			{
+				plotter.setColor(cyan);
+			}
+			else
+			{
+				plotter.setColor(red);
+			}
+			plotter.plot(x-1,y,SQUARE);
+			paddle.setXY(x,y);
 	}
 }

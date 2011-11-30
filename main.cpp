@@ -13,38 +13,26 @@ using namespace std;
 
 //The total number of levels
 const int MAXLEVEL=1;
-const unsigned width = 79, height = 30;
-
-struct console
-  {
-	console( unsigned width, unsigned height )
-    {	
-		HANDLE hCon;
-		CONSOLE_SCREEN_BUFFER_INFO csbi;
-		SMALL_RECT rect;
-		COORD      c;
-		hCon = GetStdHandle( STD_OUTPUT_HANDLE );
-
-		rect.Left   = 0;
-		rect.Top    = 0;
-		rect.Right  = width -1;
-		rect.Bottom = height -1;
-		SetConsoleWindowInfo( hCon, TRUE, &rect );
-
-		c.X = width;
-		c.Y = height;
-		SetConsoleScreenBufferSize( hCon, c );
-	}
-
-	~console()
-	{
-    }
-  };
-
-console con(80, 30);
+const unsigned width = 80, height = 30;
 
 int main ()
 {
+	HANDLE hCon;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	SMALL_RECT rect;
+	COORD      c;
+	hCon = GetStdHandle( STD_OUTPUT_HANDLE );
+
+	rect.Left   = 0;
+	rect.Top    = 0;
+	rect.Right  = width -1;
+	rect.Bottom = height -1;
+	SetConsoleWindowInfo( hCon, TRUE, &rect );
+
+	c.X = width;
+	c.Y = height;
+	SetConsoleScreenBufferSize( hCon, c );
+
 	PlaySound("./launch.wav", NULL, SND_FILENAME | SND_ASYNC);
 	for (int levelNum=1; levelNum<=MAXLEVEL; levelNum++)
 	{
