@@ -29,6 +29,11 @@ void Level::setBlock(Block block1)
 	block = block1;
 }
 
+void Level::setLives(int newLives)
+{
+	lives = newLives;
+}
+
 Puck Level::getPuck()
 {
 	return puck;
@@ -42,6 +47,11 @@ Paddle Level::getPaddle()
 Block Level::getBlock()
 {
 	return block;
+}
+
+int Level::getLives()
+{
+	return lives;
 }
 
 //drawLevel is used to output our level file.
@@ -140,6 +150,27 @@ void Level::drawLevel(istream &levelFile)
 			}
 		}
 	}
+
+	//draw paddle
+	int x = paddle.getX();
+	int y = paddle.getY();
+
+	plot.setColor(yellow);
+	for (int i = 0; i < 6; i++)
+	{
+		plot.plot(x+i, y, SQUARE);
+	}	
+
+	//draw puck
+
+	plot.setColor(lightgrey);
+
+	x = puck.getX();
+	y = puck.getY();
+
+	plot.plot(x, y, SQUARE);
+
+
 }
 
 void Level::runLevel()
@@ -156,7 +187,10 @@ void Level::clearScreen()
 //and keep the game running until endLevel is called.
 void Level::startLevel(istream &splashFile, ostream &outStream)
 {		
-	paddle.setXY(5,28);
+	paddle.setXY(37, 28);
+
+	puck.setXY(40, 25);
+
 	isRunning = true;
 	string tempString;
 	while (getline(splashFile, tempString))
@@ -185,23 +219,22 @@ void Level::moveLeft()
 
 		if (x > 3)
 		{
-			Plotter plotter;
+			Plotter plot;
 			x -= 1;
-			plotter.setColor(yellow);
-			plotter.move(x,y);
-			for (int i = 0; i < 6; i++)
+			plot.setColor(yellow);
+			for (int i = 0; i < 7; i++)
 			{
-			plotter.plot(x+i, y, SQUARE);
+			plot.plot(x+i, y, SQUARE);
 			}
 			if (levelNum <= 3)
 			{
-				plotter.setColor(cyan);
+				plot.setColor(cyan);
 			}
 			else
 			{
-				plotter.setColor(red);
+				plot.setColor(red);
 			}
-			plotter.plot(x+6,y,SQUARE);
+			plot.plot(x+7,y,SQUARE);
 			paddle.setXY(x,y);
 		}
 }
@@ -213,23 +246,23 @@ void Level::moveRight()
 
 		if (x < 72)
 		{
-			Plotter plotter;
 			x += 1;
-			plotter.setColor(yellow);
-			plotter.move(x,y);
-			for (int i = 0; i < 6; i++)
+			plot.setColor(yellow);
+			for (int i = 0; i < 7; i++)
 			{
-			plotter.plot(x+i, y, SQUARE);
+			plot.plot(x+i, y, SQUARE);
 			}
 			if (levelNum <= 3)
 			{
-				plotter.setColor(cyan);
+				plot.setColor(cyan);
 			}
 			else
 			{
-				plotter.setColor(red);
+				plot.setColor(red);
 			}
-			plotter.plot(x-1,y,SQUARE);
+			plot.plot(x-1,y,SQUARE);
 			paddle.setXY(x,y);
 	}
 }
+
+int Level::lives = 1;
