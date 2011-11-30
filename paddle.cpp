@@ -1,8 +1,6 @@
-using namespace std;
 #include <iostream>
 #include "paddle.h"
-
-//using namespace std;
+using namespace std;
 
 Paddle::Paddle()
 {
