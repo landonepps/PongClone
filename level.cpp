@@ -155,7 +155,8 @@ void Level::clearScreen()
 //We can either use startLevel to display the splash screen
 //and keep the game running until endLevel is called.
 void Level::startLevel(istream &splashFile, ostream &outStream)
-{
+{		
+	paddle.setXY(5,28);
 	isRunning = true;
 	string tempString;
 	while (getline(splashFile, tempString))
@@ -175,4 +176,52 @@ void Level::endLevel()
 void Level::nextLevel()
 {
 
+}
+
+void Level::moveLeft()
+{
+		int x = paddle.getX();
+		int y = paddle.getY();
+		Plotter plotter;
+        x -= 1;
+		plotter.setColor(yellow);
+        plotter.move(x,y);
+        plotter.plot(x,y,SQUARE);
+		plotter.plot(x+1,y,SQUARE);
+		plotter.plot(x+2,y,SQUARE);
+		plotter.plot(x+3,y,SQUARE);
+		plotter.plot(x+4,y,SQUARE);
+		if (levelNum <= 3)
+		{
+			plotter.setColor(cyan);
+		}
+		else
+		{
+			plotter.setColor(red);
+		}
+		plotter.plot(x+5,y,SQUARE);
+}
+
+void Level::moveRight()
+{
+		int x = paddle.getX();
+		int y = paddle.getY();
+		Plotter plotter;
+        x += 1;
+		plotter.setColor(yellow);
+        plotter.move(x,y);
+        plotter.plot(x,y,SQUARE);
+		plotter.plot(x+1,y,SQUARE);
+		plotter.plot(x+2,y,SQUARE);
+		plotter.plot(x+3,y,SQUARE);
+		plotter.plot(x+4,y,SQUARE);
+		if (levelNum <= 3)
+		{
+			plotter.setColor(cyan);
+		}
+		else
+		{
+			plotter.setColor(red);
+		}
+		plotter.plot(x-1,y,SQUARE);
 }

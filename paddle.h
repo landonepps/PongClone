@@ -1,20 +1,23 @@
 #ifndef PADDLE_H
 #define PADDLE_H
+#include <iostream>
+using namespace std;
 
 class Paddle
 {
 	private:
-		double x, y;
+		int x, y;
 	public:
 		Paddle();
-		Paddle(double, double);
+		Paddle(int, int);
 		~Paddle();
 
-		void setX(double);
-		void setY(double);
-		void setXY(double, double);
-		double getX();
-		double getY();
+		void setX(int);
+		void setY(int);
+		void setXY(int, int);
+		int getX();
+		int getY();
+
 };
 
 #endif
