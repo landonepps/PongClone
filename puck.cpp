@@ -11,6 +11,7 @@ Puck::Puck()
 	mx = 1;
 	my = 1;
 }
+
 Puck::Puck(double x1, double y1, double mx1, double my1)
 {
 	x = x1;
@@ -18,9 +19,11 @@ Puck::Puck(double x1, double y1, double mx1, double my1)
 	mx = mx1;
 	my = my1;
 }
+
 Puck::~Puck()
 {
 }
+
 void Puck::setX(double x1)
 {
 	x = x1;
