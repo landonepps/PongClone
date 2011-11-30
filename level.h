@@ -17,17 +17,19 @@ class Level
 		Paddle paddle;
 		Block block;
 		Plotter plot;
+		static int lives;
 	public:
 		Level(int levelNumber);
 		~Level();
 		void setPuck(Puck);
 		void setPaddle(Paddle);
 		void setBlock(Block);
-		//setLevel is used to read in our level file.
+		void setLives(int);
 
 		Puck getPuck();
 		Paddle getPaddle();
 		Block getBlock();
+		int getLives();
 		//drawLevel is used to output our level file.
 		void drawLevel(istream &levelFile);
 		void runLevel();

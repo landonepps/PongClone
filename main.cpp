@@ -7,18 +7,18 @@
 #include <MMSystem.h>
 #include "level.h"
 
-#pragma comment(lib,"Winmm.lib")
+#pragma comment(lib, "Winmm.lib")
 
 using namespace std;
 
 //The total number of levels
 const int MAXLEVEL=1;
+//The console size
 const unsigned width = 80, height = 30;
 
 int main ()
 {
 	HANDLE hCon;
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	SMALL_RECT rect;
 	COORD      c;
 	hCon = GetStdHandle( STD_OUTPUT_HANDLE );
@@ -34,6 +34,7 @@ int main ()
 	SetConsoleScreenBufferSize( hCon, c );
 
 	PlaySound("./launch.wav", NULL, SND_FILENAME | SND_ASYNC);
+
 	for (int levelNum=1; levelNum<=MAXLEVEL; levelNum++)
 	{
 		//Create a new level and tell it which number it is
@@ -65,30 +66,39 @@ int main ()
 			return 1;
 		}
 
-		//starts level
+		//starts level/displays splashscreen
 		level.startLevel(splashFile, cout);
 
+		//wait for user to press a button
 		_getch();
+
+		//clears splash so we can draw the level
 		level.clearScreen();
 		
 		//gives the level the level file
 		level.drawLevel(levelFile);
 
-		//paddle
+		//the main game loop
 		char c;
-		while(c = _getch())
+		while (level.getLives() > 0)
 		{
-			switch(c)
+			//paddle
+			if(c = _getch_nolock())
 			{
-				case 75: //left
-					level.moveLeft();
-					break;
-				case 77: //right
-					level.moveRight();
-					break;
+				switch(c)
+				{
+					case 75: //left
+						level.moveLeft();
+						break;
+					case 77: //right
+						level.moveRight();
+						break;
+				}
 			}
-		}
 
+
+
+		}
 
 		_getch();
 

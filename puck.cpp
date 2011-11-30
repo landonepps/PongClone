@@ -40,6 +40,11 @@ void Puck::setMY(double my1)
 {
 	my = my1;
 }
+void Puck::setXY(double x1, double y1)
+{
+	x = x1;
+	y = y1;
+}
 double Puck::getX()
 {
 	return x;

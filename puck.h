@@ -17,6 +17,7 @@ class Puck
 		void setY(double);
 		void setMX(double);
 		void setMY(double);
+		void setXY(double, double);
 		double getX();
 		double getY();
 		double getMX();
