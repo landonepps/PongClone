@@ -82,8 +82,25 @@ int main ()
 
 		_getch();
 		level.clearScreen();
+		
 		//gives the level the level file
 		level.drawLevel(levelFile);
+
+		//paddle
+		char c;
+		while(c = _getch())
+		{
+			switch(c)
+			{
+				case 75: //left
+					level.moveLeft();
+					break;
+				case 77: //right
+					level.moveRight();
+					break;
+			}
+		}
+
 
 		_getch();
 

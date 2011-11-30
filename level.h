@@ -40,4 +40,8 @@ class Level
 		//level depending if all blocks are destroyed and end when 
 		//all blocks are destroyed.
 		void nextLevel();
+
+		//paddle functions
+		void moveLeft();
+		void moveRight();
 };
