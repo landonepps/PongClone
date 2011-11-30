@@ -14,7 +14,7 @@ Block::Block(double x1, double y1)
 
 Block::~Block()
 {
-	//
+	// 
 }
 
 void Block::setX(double num)
