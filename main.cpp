@@ -81,7 +81,7 @@ int main ()
 		level.startLevel(splashFile, cout);
 
 		_getch();
-				level.clearScreen();
+		level.clearScreen();
 		//gives the level the level file
 		level.drawLevel(levelFile);
 
