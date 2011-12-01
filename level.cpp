@@ -60,25 +60,11 @@ void Level::drawLevel(istream &levelFile)
 	//color bg
 	if (levelNum <= 3)
 	{
-		for (int i = 0; i < 80; i++)
-		{
-			for (int j = 0; j < 30; j++)
-			{
-				plot.setColor(cyan);
-				plot.plot(i, j, SQUARE);
-			}
-		}
+		system("color ba");
 	}
 	else
 	{
-		for (int i = 0; i < 80; i++)
-		{
-			for (int j = 0; j < 30; j++)
-			{
-				plot.setColor(red);
-				plot.plot(i, j, SQUARE);
-			}
-		}
+		system("color ca");
 	}
 
 	//draw left wall
@@ -219,7 +205,6 @@ void Level::moveLeft()
 
 		if (x > 3)
 		{
-			Plotter plot;
 			x -= 1;
 			plot.setColor(yellow);
 			for (int i = 0; i < 7; i++)

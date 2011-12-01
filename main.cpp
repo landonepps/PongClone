@@ -34,75 +34,87 @@ int main ()
 	SetConsoleScreenBufferSize( hCon, c );
 
 	PlaySound("./launch.wav", NULL, SND_FILENAME | SND_ASYNC);
-
-	for (int levelNum=1; levelNum<=MAXLEVEL; levelNum++)
+	char choice;
+	ifstream menuFile;
+	string str;
+	menuFile.open("menu.txt");
+	while(getline(menuFile, str));
 	{
-		//Create a new level and tell it which number it is
-		Level level(levelNum);
+		cout << str << endl;
+	}
+	cin >> choice;
 
-		//opens the level file
-		//naming convention is level<levelNumber>.txt
-		ifstream levelFile;
-		stringstream levelFileName;
-		levelFileName << "level" << levelNum << ".txt";
-		levelFile.open( levelFileName.str().c_str() );
-		if (!levelFile)
+	if(choice == 's' || choice == 'S')
+	{
+		for (int levelNum=1; levelNum<=MAXLEVEL; levelNum++)
 		{
-			cout << "Error opening splash screen file\n";
-			return 1;
-		}
+			//Create a new level and tell it which number it is
+			Level level(levelNum);
 
-		
-
-		//opens the splashscreen file
-		//naming convention is splash<levelNumber>.txt
-		ifstream splashFile;
-		stringstream splashFileName;
-		splashFileName << "splash" << levelNum << ".txt";
-		splashFile.open( splashFileName.str().c_str() );
-		if (!splashFile)
-		{
-			cout << "Error opening splash screen file\n";
-			return 1;
-		}
-
-		//starts level/displays splashscreen
-		level.startLevel(splashFile, cout);
-
-		//wait for user to press a button
-		_getch();
-
-		//clears splash so we can draw the level
-		level.clearScreen();
-		
-		//gives the level the level file
-		level.drawLevel(levelFile);
-
-		//the main game loop
-		char c;
-		while (level.getLives() > 0)
-		{
-			//paddle
-			if(c = _getch_nolock())
+			//opens the level file
+			//naming convention is level<levelNumber>.txt
+			ifstream levelFile;
+			stringstream levelFileName;
+			levelFileName << "level" << levelNum << ".txt";
+			levelFile.open( levelFileName.str().c_str() );
+			if (!levelFile)
 			{
-				switch(c)
-				{
-					case 75: //left
-						level.moveLeft();
-						break;
-					case 77: //right
-						level.moveRight();
-						break;
-				}
+				cout << "Error opening splash screen file\n";
+				return 1;
 			}
 
+		
+
+			//opens the splashscreen file
+			//naming convention is splash<levelNumber>.txt
+			ifstream splashFile;
+			stringstream splashFileName;
+			splashFileName << "splash" << levelNum << ".txt";
+			splashFile.open( splashFileName.str().c_str() );
+			if (!splashFile)
+			{
+				cout << "Error opening splash screen file\n";
+				return 1;
+			}
+
+			//starts level/displays splashscreen
+			level.startLevel(splashFile, cout);
+
+			//wait for user to press a button
+			_getch();
+
+			//clears splash so we can draw the level
+			level.clearScreen();
+		
+			//gives the level the level file
+			level.drawLevel(levelFile);
+
+			//the main game loop
+			char c;
+			while (level.getLives() > 0)
+			{
+				//paddle
+				if(c = _getch_nolock())
+				{
+					switch(c)
+					{
+						case 75: //left
+							level.moveLeft();
+							break;
+						case 77: //right
+							level.moveRight();
+							break;
+					}
+				}
 
 
+
+			}
+
+			_getch();
+
+			level.clearScreen();
 		}
-
-		_getch();
-
-		level.clearScreen();
 	}
 	return 0;
 }
