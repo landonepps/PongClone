@@ -39,14 +39,16 @@ int main ()
 	ifstream menuFile;
 	string str;
 	menuFile.open("menu.txt");
-	
+	stringstream stringythingy;
+	while(getline(menuFile, str))
+	{
+		stringythingy << str << endl;
+	}
+
 	do
 	{
 		cls(hCon);
-		while(getline(menuFile, str))
-		{
-			cout << str << endl;
-		}
+		cout << stringythingy.str();
 		choice = _getch();
 		if(choice == 's' || choice == 'S')
 		{
