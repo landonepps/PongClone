@@ -27,6 +27,7 @@ class Level
 		void setLives(int);
 
 		Puck getPuck();
+		double getPuckX();
 		Paddle getPaddle();
 		Block getBlock();
 		int getLives();
@@ -46,4 +47,5 @@ class Level
 		//paddle functions
 		void moveLeft();
 		void moveRight();
+
 };

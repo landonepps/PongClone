@@ -148,14 +148,12 @@ void Level::drawLevel(istream &levelFile)
 	}	
 
 	//draw puck
-
 	plot.setColor(lightgrey);
 
 	x = puck.getX();
 	y = puck.getY();
 
 	plot.plot(x, y, SQUARE);
-
 
 }
 
@@ -229,7 +227,7 @@ void Level::moveRight()
 		int x = paddle.getX();
 		int y = paddle.getY();
 
-		if (x < 72)
+		if (x < 71)
 		{
 			x += 1;
 			plot.setColor(yellow);
