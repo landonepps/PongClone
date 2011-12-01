@@ -4,7 +4,6 @@ using namespace std;
 
 #include "plotter.h"
 
-
 Plotter::Plotter()
 {
        coordScreen.X = 0;
@@ -43,10 +42,6 @@ void Plotter::clear()
 {
   cls( hConsoleOutput );
 }
-
-
-
-
 
 void Plotter::cls( HANDLE hConsole )
 {

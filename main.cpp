@@ -38,6 +38,7 @@ int main ()
 	ifstream menuFile;
 	string str;
 	menuFile.open("menu.txt");
+
 	while(getline(menuFile, str));
 	{
 		cout << str << endl;
@@ -107,8 +108,14 @@ int main ()
 					}
 				}
 
+			Paddle thePaddle = level.getPaddle();
+			/*for (int i = 0; i < 100; i++)
+			{
+				if( thePaddle.getX() ==  )
+				{
+				}
 
-
+			}*/
 			}
 
 			_getch();
