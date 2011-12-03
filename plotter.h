@@ -11,6 +11,7 @@ const unsigned char RIGHT  = 222;
 const unsigned char TOP    = 223;
 const unsigned char BOTTOM = 220;
 const unsigned char BALL = 254;
+const unsigned char SPACE = ' ';
 
 
 enum ink 
@@ -34,6 +35,7 @@ class Plotter
        void move(int, int);
        void plot(int,int,char);
        void setColor(ink);
+	   void setColorSpecific();
 };
 
 
