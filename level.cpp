@@ -39,14 +39,52 @@ Puck Level::getPuck()
 	return puck;
 }
 
+double Level::getPuckX()
+{
+	return puck.getX();
+}
+
+double Level::getPuckY()
+{
+	return puck.getY();
+}
+
 Paddle Level::getPaddle()
 {
 	return paddle;
 }
 
-Block Level::getBlock()
+double Level::getPaddleX()
 {
-	return block;
+	return paddle.getX();
+}
+
+double Level::getPaddleY()
+{
+	return paddle.getY();
+}
+
+Block Level::getBlock(int a, int b)
+{
+	return blocks[a][b];
+}
+
+int Level::getBlockX(int a, int b)
+{
+	return blocks[a][b].getX();
+}
+
+int Level::getBlockY(int a, int b)
+{
+	return blocks[a][b].getY();
+}
+void Level::setBlockX(int a, int b, int newBlockX)
+{
+	blocks[a][b].setX( newBlockX );
+}
+void Level::setBlockY(int a, int b, int newBlockY)
+{
+	blocks[a][b].setY( newBlockY );
 }
 
 int Level::getLives()
@@ -102,7 +140,6 @@ void Level::drawLevel(istream &levelFile)
 
 
 	//draw blocks
-	Block blocks[9][9];
 
 	char blockFile[9][9];
 
@@ -170,6 +207,7 @@ void Level::clearScreen()
 void Level::startLevel(istream &splashFile, ostream &outStream)
 {	
 	system("color 07");
+
 	paddle.setXY(37, 28);
 
 	puck.setXY(40, 25);
@@ -206,7 +244,7 @@ void Level::moveLeft()
 			plot.setColor(yellow);
 			for (int i = 0; i < 7; i++)
 			{
-			plot.plot(x+i, y, SQUARE);
+				plot.plot(x+i, y, SQUARE);
 			}
 			if (levelNum <= 3)
 			{
@@ -232,7 +270,7 @@ void Level::moveRight()
 			plot.setColor(yellow);
 			for (int i = 0; i < 7; i++)
 			{
-			plot.plot(x+i, y, SQUARE);
+				plot.plot(x+i, y, SQUARE);
 			}
 			if (levelNum <= 3)
 			{
@@ -257,10 +295,34 @@ void Level::updatePuck()
 	{
 		plot.setColorSpecific(red);
 	}
+
 	plot.plot(puck.getX(), puck.getY(), SPACE);
 	puck.movePuck();
 	plot.setColor(black);
 	plot.plot(puck.getX(), puck.getY(), BALL);
 }
 
-int Level::lives = 1;
+void Level::reversePuck(bool x, bool y)
+{
+	if (x)
+	{
+		puck.setMX( puck.getMX() * -1 );
+	}
+	if (y)
+	{
+		puck.setMY( puck.getMY() * -1 );
+	}
+}
+
+void Level::removeBlock(int blockX, int blockY)
+{
+	blockX = ( 4 + ( blockX * 8 ) );
+	blockY = ( blockY * 2 );
+	for (int q = 1; q <= 7; q++)
+	{
+		plot.setColorSpecific(cyan);
+		plot.plot((int)blockX + q, (int)blockY, SPACE);
+	}
+}
+
+int Level::lives = 3;

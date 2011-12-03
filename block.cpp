@@ -2,8 +2,8 @@
 
 Block::Block()
 {
-	x = 0;
-	y = 0;
+	x = -1;
+	y = -1;
 }
 
 Block::Block(double x1, double y1)
