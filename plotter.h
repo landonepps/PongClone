@@ -35,7 +35,7 @@ class Plotter
        void move(int, int);
        void plot(int,int,char);
        void setColor(ink);
-	   void setColorSpecific();
+	   void setColorSpecific(ink);
 };
 
 

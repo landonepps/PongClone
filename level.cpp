@@ -201,11 +201,11 @@ void Level::moveLeft()
 			}
 			if (levelNum <= 3)
 			{
-				plot.setColorSpecific();
+				plot.setColorSpecific(cyan);
 			}
 			else
 			{
-				plot.setColor(red);
+				plot.setColorSpecific(red);
 			}
 			plot.plot(x+7,y,SPACE); //Draws behind paddle
 			paddle.setXY(x,y);
@@ -227,11 +227,11 @@ void Level::moveRight()
 			}
 			if (levelNum <= 3)
 			{
-				plot.setColorSpecific();
+				plot.setColorSpecific(cyan);
 			}
 			else
 			{
-				plot.setColor(red);
+				plot.setColorSpecific(red);
 			}
 			plot.plot(x-1,y,SPACE);
 			paddle.setXY(x,y);
@@ -240,7 +240,7 @@ void Level::moveRight()
 
 void Level::updatePuck()
 {
-	plot.setColorSpecific();
+	plot.setColorSpecific(cyan);
 	plot.plot(puck.getX(), puck.getY(), SPACE);
 	puck.movePuck();
 	plot.setColor(black);
