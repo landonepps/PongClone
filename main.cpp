@@ -101,29 +101,38 @@ int main ()
 				char c;
 				while (level.getLives() > 0)
 				{
-					//paddle
-					if(c = _getch_nolock())
+
+					level.updatePuck();
+
+					for (int i = 0; i < 5; i++ )
 					{
-						switch(c)
+						Sleep(10);
+
+						//paddle
+						if(_kbhit())
 						{
-							case 75: //left
-								level.moveLeft();
-								break;
-							case 77: //right
-								level.moveRight();
-								break;
+							c = _getch();
+							switch(c)
+							{
+								case 75: //left
+									level.moveLeft();
+									break;
+								case 77: //right
+									level.moveRight();
+									break;
+							}
 						}
-					}
 
-				Paddle thePaddle = level.getPaddle();
-				/*for (int i = 0; i < 100; i++)
-				{
-					if( thePaddle.getX() ==  )
-					{
+						//Paddle thePaddle = level.getPaddle();
+						/*for (int i = 0; i < 100; i++)
+						{
+							if( thePaddle.getX() ==  )
+							{
+								
+							}
+						}*/
 					}
-
-				}*/
-				}
+				} 
 
 				_getch();
 

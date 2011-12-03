@@ -71,3 +71,18 @@ string Puck::toString()
   
 		return result.str();
 }
+
+void Puck::movePuck()
+{
+	if (x > 76 || x < 4)
+	{
+		mx *= -1;
+	}
+	if (y > 28 || y < 4)
+	{
+		my *= -1;
+	}
+	x += mx;
+	y += my;
+}
+

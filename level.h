@@ -48,4 +48,7 @@ class Level
 		void moveLeft();
 		void moveRight();
 
+		//puck functions
+		void updatePuck();
+
 };

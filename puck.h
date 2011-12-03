@@ -22,6 +22,7 @@ class Puck
 		double getY();
 		double getMX();
 		double getMY();
+		void movePuck();
 		string toString();
 };
 

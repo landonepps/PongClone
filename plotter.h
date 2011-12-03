@@ -10,7 +10,7 @@ const unsigned char LEFT   = 221;
 const unsigned char RIGHT  = 222;
 const unsigned char TOP    = 223;
 const unsigned char BOTTOM = 220;
-const unsigned char BLANK  = ' ';
+const unsigned char BALL = 254;
 
 
 enum ink 

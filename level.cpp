@@ -58,14 +58,14 @@ int Level::getLives()
 void Level::drawLevel(istream &levelFile)
 {
 	//color bg
-	if (levelNum <= 3)
+	/*if (levelNum <= 3)
 	{
 		system("color ba");
 	}
 	else
 	{
 		system("color ca");
-	}
+	}*/
 
 	//draw left wall
 	for (int i = 0; i < 29; i++)
@@ -211,7 +211,7 @@ void Level::moveLeft()
 			}
 			if (levelNum <= 3)
 			{
-				plot.setColor(cyan);
+				plot.setColor(black);
 			}
 			else
 			{
@@ -237,7 +237,7 @@ void Level::moveRight()
 			}
 			if (levelNum <= 3)
 			{
-				plot.setColor(cyan);
+				plot.setColor(black);
 			}
 			else
 			{
@@ -246,6 +246,15 @@ void Level::moveRight()
 			plot.plot(x-1,y,SQUARE);
 			paddle.setXY(x,y);
 	}
+}
+
+void Level::updatePuck()
+{
+	plot.setColor(black);
+	plot.plot(puck.getX(), puck.getY(), BALL);
+	puck.movePuck();
+	plot.setColor(cyan);
+	plot.plot(puck.getX(), puck.getY(), BALL);
 }
 
 int Level::lives = 1;
