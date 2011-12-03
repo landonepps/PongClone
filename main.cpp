@@ -13,7 +13,7 @@ using namespace std;
 
 void cls( HANDLE hConsole );
 //The total number of levels
-const int MAXLEVEL=1;
+const int MAXLEVEL = 1;
 //The console size
 const unsigned width = 80, height = 30;
 
@@ -34,12 +34,17 @@ int main ()
 	c.Y = height;
 	SetConsoleScreenBufferSize( hCon, c );
 
+	//self explanitory
 	PlaySound("./launch.wav", NULL, SND_FILENAME | SND_ASYNC);
+
+	//define variables
 	char choice;
 	ifstream menuFile;
 	string str;
 	menuFile.open("menu.txt");
 	stringstream stringythingy;
+	bool collided =  false;
+
 	while(getline(menuFile, str))
 	{
 		stringythingy << str << endl;
@@ -97,14 +102,16 @@ int main ()
 				//gives the level the level file
 				level.drawLevel(levelFile);
 
+				_getch();
+
 				//the main game loop
 				char c;
-				while (level.getLives() > 0)
+				while (level.getLives() > 0 )
 				{
 
 					level.updatePuck();
-
-					for (int i = 0; i < 5; i++ )
+					bool continueLoopingSoYouDontHaveToUseABreak = true;
+					for (int i = 0; i < 7 && continueLoopingSoYouDontHaveToUseABreak; i++ )
 					{
 						Sleep(10);
 
@@ -128,13 +135,77 @@ int main ()
 						}
 
 						//Paddle thePaddle = level.getPaddle();
-						/*for (int i = 0; i < 100; i++)
+
+						int blockLocX = -1;
+						int blockLocY = -1;
+						collided = false;
+
+						for (int i = 0; i < 7; i++)
 						{
-							if( thePaddle.getX() ==  )
+							if ( ( level.getPaddleX() + i == level.getPuckX() ) &&
+								( level.getPaddleY() - 1 == level.getPuckY() ) )
 							{
-								
+								level.reversePuck( false, true );
+								collided = true;
 							}
-						}*/
+						}
+
+						//loop for blocks
+						for (int k = 0; k < 9; k++)
+						{
+							for (int j = 0; j < 9; j++)
+							{
+								if(level.getBlockX(k, j) != -1)
+								{
+									bool blockHit = false;
+
+									for (int i = 0; i < 9; i++)
+									{
+										if ( ( level.getBlockX(k, j) + i == level.getPuckX() ) &&
+											( level.getBlockY(k, j) + 1 == level.getPuckY() ) )
+										{
+											level.reversePuck( false, true );
+											blockLocX = k;
+											blockLocY = j;
+											collided = true;
+											blockHit = true;
+										}
+										if ( ( level.getBlockX(k, j) + i == level.getPuckX() ) &&
+											( level.getBlockY(k, j) - 1 == level.getPuckY() ) )
+										{
+											level.reversePuck( false, true );
+											blockLocX = k;
+											blockLocY = j;
+											collided = true;
+											blockHit = true;
+										}
+									}
+
+									if ( blockHit )
+									{
+										level.removeBlock(k, j);
+									}
+								}
+							}
+						}
+
+						level.setBlockX(blockLocX, blockLocY, -1);
+						level.setBlockY(blockLocX, blockLocY, -1);
+
+						if ( level.getPuckY() > 28 )
+						{
+							int temp = level.getLives();
+							level.setLives( temp - 1 );
+							continueLoopingSoYouDontHaveToUseABreak = false;
+						}
+
+						if( collided )
+						{
+							level.updatePuck();
+						}
+						
+						//flush input buffer maybe to reduce lag?
+						//cin.clear();
 					}
 				} 
 

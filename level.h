@@ -15,7 +15,9 @@ class Level
 		int levelNum;
 		Puck puck;
 		Paddle paddle;
+		//remove this vv
 		Block block;
+		Block blocks[9][9];
 		Plotter plot;
 		static int lives;
 	public:
@@ -28,8 +30,15 @@ class Level
 
 		Puck getPuck();
 		double getPuckX();
+		double getPuckY();
 		Paddle getPaddle();
-		Block getBlock();
+		double getPaddleX();
+		double getPaddleY();
+		Block getBlock(int a, int b);
+		int getBlockX(int a, int b);
+		int getBlockY(int a, int b);
+		void setBlockX(int a, int b, int x);
+		void setBlockY(int a, int b, int y);
 		int getLives();
 		//drawLevel is used to output our level file.
 		void drawLevel(istream &levelFile);
@@ -50,5 +59,8 @@ class Level
 
 		//puck functions
 		void updatePuck();
+		void reversePuck( bool, bool );
 
+		//plotter control
+		void removeBlock(int blockX, int blockY);
 };

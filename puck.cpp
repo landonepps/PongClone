@@ -6,10 +6,10 @@ using namespace std;
 
 Puck::Puck()
 {
-	x = 1;
-	y = 1;
+	x = 10;
+	y = 10;
 	mx = 1;
-	my = 1;
+	my = -1;
 }
 
 Puck::Puck(double x1, double y1, double mx1, double my1)
@@ -74,14 +74,17 @@ string Puck::toString()
 
 void Puck::movePuck()
 {
+	//for reference vv
+	
 	if (x > 76 || x < 4)
 	{
 		mx *= -1;
 	}
-	if (y > 28 || y < 4)
+	if ( y > 28 || y < 1)
 	{
 		my *= -1;
 	}
+	
 	x += mx;
 	y += my;
 }

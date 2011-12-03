@@ -10,7 +10,7 @@ Plotter::Plotter()
        coordScreen.Y = 0;
        
        hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-       SetConsoleTextAttribute(hConsoleOutput, 0);
+       SetConsoleTextAttribute(hConsoleOutput, green);
 
 }
 
