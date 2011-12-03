@@ -114,9 +114,13 @@ int main ()
 							c = _getch();
 							switch(c)
 							{
+								case 'A':
+								case 'a':
 								case 75: //left
 									level.moveLeft();
 									break;
+								case 'D':
+								case 'd':
 								case 77: //right
 									level.moveRight();
 									break;

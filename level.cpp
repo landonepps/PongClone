@@ -57,6 +57,14 @@ int Level::getLives()
 //drawLevel is used to output our level file.
 void Level::drawLevel(istream &levelFile)
 {
+	if(levelNum <= 3)
+	{
+		system("color ba");
+	}
+	else
+	{
+		system("color ca");
+	}
 	//draw left wall
 	for (int i = 0; i < 29; i++)
 	{
@@ -160,7 +168,8 @@ void Level::clearScreen()
 //We can either use startLevel to display the splash screen
 //and keep the game running until endLevel is called.
 void Level::startLevel(istream &splashFile, ostream &outStream)
-{		
+{	
+	system("color 07");
 	paddle.setXY(37, 28);
 
 	puck.setXY(40, 25);
@@ -233,14 +242,21 @@ void Level::moveRight()
 			{
 				plot.setColorSpecific(red);
 			}
-			plot.plot(x-1,y,SPACE);
+			plot.plot(x-1,y,SPACE); //Draws behind paddle
 			paddle.setXY(x,y);
 	}
 }
 
 void Level::updatePuck()
 {
-	plot.setColorSpecific(cyan);
+	if(levelNum <= 3)
+	{
+		plot.setColorSpecific(cyan);
+	}
+	else
+	{
+		plot.setColorSpecific(red);
+	}
 	plot.plot(puck.getX(), puck.getY(), SPACE);
 	puck.movePuck();
 	plot.setColor(black);
