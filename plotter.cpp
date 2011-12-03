@@ -10,7 +10,7 @@ Plotter::Plotter()
        coordScreen.Y = 0;
        
        hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-       SetConsoleTextAttribute(hConsoleOutput, BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
+       SetConsoleTextAttribute(hConsoleOutput, 0);
 
 }
 
@@ -49,7 +49,7 @@ void Plotter::setColorSpecific(ink color)
 	}
 	else if(color == black)
 	{
-		SetConsoleTextAttribute(hConsoleOutput, 0);
+		SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	}
 }
 
