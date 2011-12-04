@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <fstream>
 #include "puck.h"
 #include "paddle.h"
@@ -19,6 +20,7 @@ class Level
 		Block blocks[9][9];
 		Plotter plot;
 		static int lives;
+		int blockNumber;
 	public:
 		Level(int levelNumber);
 		~Level();
@@ -27,6 +29,7 @@ class Level
 		void setBlock(Block);
 		void setLives(int);
 
+		int getBlockNum();
 		Puck getPuck();
 		double getPuckX();
 		double getPuckY();

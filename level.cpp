@@ -76,6 +76,10 @@ int Level::getLives()
 {
 	return lives;
 }
+int Level::getBlockNum()
+{
+	return blockNumber;
+}
 
 //We can either use startLevel to display the splash screen
 //and keep the game running until endLevel is called.
@@ -85,7 +89,7 @@ void Level::startLevel(istream &splashFile, ostream &outStream)
 
 	paddle.setXY(37, 28);
 
-	puck.setXY(40, 25);
+	puck.setXY(40, 26);
 
 	isRunning = true;
 	string tempString;
@@ -98,6 +102,8 @@ void Level::startLevel(istream &splashFile, ostream &outStream)
 //drawLevel is used to output our level file.
 void Level::drawLevel(istream &levelFile)
 {
+	blockNumber = 0;
+
 	if(levelNum <= 3)
 	{
 		system("color ba");
@@ -159,11 +165,12 @@ void Level::drawLevel(istream &levelFile)
 		{
 			if ( blockFile[j][i] == '1' )
 			{
+				blockNumber++;
 				double blockX = ( 4 + ( i * 8 ) );
 				double blockY = ( j * 2 );
 				blocks[i][j].setXY(blockX, blockY ) ;
 
-				for (int q = 1; q <= 7; q++)
+				for (int q = 0; q < 7; q++)
 				{
 					if(levelNum <= 3)
 					{
@@ -296,13 +303,13 @@ void Level::removeBlock(int blockX, int blockY)
 	blockY = ( blockY * 2 );
 	if(levelNum <= 3)
 	{
-		plot.setColorSpecific(cyan);
-	}
+        	plot.setColorSpecific(cyan);
+       	}
 	else
 	{
 		plot.setColorSpecific(red);
 	}
-	for (int q = 1; q <= 7; q++)
+	for (int q = 0; q < 7; q++)
 	{
 		plot.plot((int)blockX + q, (int)blockY, SPACE);
 	}
