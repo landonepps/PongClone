@@ -40,6 +40,7 @@ int main ()
 
 	//define variables
 	char choice;
+	int blockNum = 1;
 	ifstream menuFile;
 	string str;
 	menuFile.open("menu.txt");
@@ -73,7 +74,7 @@ int main ()
 				levelFile.open( levelFileName.str().c_str() );
 				if (!levelFile)
 				{
-					cout << "Error opening splash screen file\n";
+					level.printText("Error opening level file");
 					return 1;
 				}
 
@@ -86,7 +87,7 @@ int main ()
 				splashFile.open( splashFileName.str().c_str() );
 				if (!splashFile)
 				{
-					cout << "Error opening splash screen file\n";
+					level.printText("Error opening splash screen file");
 					return 1;
 				}
 
@@ -113,10 +114,12 @@ int main ()
 				}
 				_getch();
 
-				//the main game loop
 				char c;
 				level.setLives(3);
-				while (level.getLives() > 0 )
+				blockNum = level.getBlockNum();
+
+				//begin level loop
+				while (level.getLives() > 0 && blockNum > 0)
 				{
 					
 					level.updatePuck();
@@ -149,11 +152,11 @@ int main ()
 						collided = false;
 
 						//loop for paddle collision detection
-						for (int i = 0; i < 7; i++)
+						for (int i = 0; i < 9; i++)
 						{
 							if (
 									( 
-										level.getPaddleX() + i == level.getPuckX()
+										level.getPaddleX() + i - 1 == level.getPuckX()
 									)
 									&&
 									(
@@ -186,13 +189,16 @@ int main ()
 								if(level.getBlockX(k, j) != -1)
 								{
 									bool blockHit = false;
-
-									for (int i = 0; i < 9; i++)
+									bool reverseX = false;
+									bool reverseY = false;
+									
+									for (int i = 0; i < 7; i++)
 									{
 										if ( ( level.getBlockX(k, j) + i == level.getPuckX() ) &&
 											( level.getBlockY(k, j) + 1 == level.getPuckY() ) )
 										{
-											level.reversePuck( false, true );
+											reverseX = false;
+											reverseY = true;
 											blockLocX = k;
 											blockLocY = j;
 											collided = true;
@@ -201,7 +207,8 @@ int main ()
 										if ( ( level.getBlockX(k, j) + i == level.getPuckX() ) &&
 											( level.getBlockY(k, j) - 1 == level.getPuckY() ) )
 										{
-											level.reversePuck( false, true );
+											reverseX = false;
+											reverseY = true;
 											blockLocX = k;
 											blockLocY = j;
 											collided = true;
@@ -209,30 +216,26 @@ int main ()
 										}
 									}
 
-									if ( ( level.getBlockX(k, j) - 1 == level.getPuckX() ) &&
+									for (int i = 0; i < 9; i++)
+									{
+										if ( ( level.getBlockX(k, j) + i + 1 == level.getPuckX() ) &&
 											( level.getBlockY(k, j) == level.getPuckY() ) )
 										{
-											level.reversePuck( true, false );
+											reverseX = true;
+											reverseY = false;
 											blockLocX = k;
 											blockLocY = j;
 											collided = true;
 											blockHit = true;
 										}
-
-									if ( ( level.getBlockX(k, j) + 9 == level.getPuckX() ) &&
-											( level.getBlockY(k, j) == level.getPuckY() ) )
-										{
-											level.reversePuck( true, false );
-											blockLocX = k;
-											blockLocY = j;
-											collided = true;
-											blockHit = true;
-										}
+									}
 
 									if ( blockHit )
 									{
 										Beep(200,20); //makes beep when block is hit.
+										level.reversePuck( reverseX, reverseY );
 										level.removeBlock(k, j);
+										blockNum--;
 									}
 								}
 							}
@@ -270,7 +273,25 @@ int main ()
 						//flush input buffer maybe to reduce lag?
 						//cin.clear();
 					}
-				} 
+				} //end level loop
+
+				if(blockNum != 0)
+				{
+					if(levelNum < 3)
+					{
+						levelNum = 3;
+					}
+					else
+					{
+						ifstream loseFile;
+						loseFile.open("youlose.txt" );
+						if (!loseFile)
+						{
+							level.printText("Error opening lose screen file");
+							return 1;
+						}
+					}
+				}
 
 				_getch();
 
