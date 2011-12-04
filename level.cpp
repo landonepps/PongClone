@@ -9,71 +9,57 @@ Level::Level(int levelNumber)
 	isRunning = false;
 	levelNum = levelNumber;
 }
-
 Level::~Level()
 {
 }
-
 void Level::setPuck(Puck puck1)
 {
 	puck = puck1;
-}
-	
+}	
 void Level::setPaddle(Paddle paddle1)
 {
 	paddle = paddle1;
 }
-
-void Level::setBlock(Block block1)
-{
-	block = block1;
-}
-
 void Level::setLives(int newLives)
 {
 	lives = newLives;
 }
-
 Puck Level::getPuck()
 {
 	return puck;
 }
-
 double Level::getPuckX()
 {
 	return puck.getX();
 }
-
 double Level::getPuckY()
 {
 	return puck.getY();
 }
-
 Paddle Level::getPaddle()
 {
 	return paddle;
 }
-
 double Level::getPaddleX()
 {
 	return paddle.getX();
 }
-
 double Level::getPaddleY()
 {
 	return paddle.getY();
 }
-
-Block Level::getBlock(int a, int b)
+void Level::setPuck(int x, int y)
 {
-	return blocks[a][b];
+	puck.setXY(x , y);
 }
-
+void Level::setPaddle(int x, int y)
+{
+	paddle.setXY(x , y);
+}
 int Level::getBlockX(int a, int b)
 {
 	return blocks[a][b].getX();
 }
-
 int Level::getBlockY(int a, int b)
 {
 	return blocks[a][b].getY();
@@ -86,10 +72,27 @@ void Level::setBlockY(int a, int b, int newBlockY)
 {
 	blocks[a][b].setY( newBlockY );
 }
-
 int Level::getLives()
 {
 	return lives;
+}
+
+//We can either use startLevel to display the splash screen
+//and keep the game running until endLevel is called.
+void Level::startLevel(istream &splashFile, ostream &outStream)
+{	
+	system("color 07");
+
+	paddle.setXY(37, 28);
+
+	puck.setXY(40, 25);
+
+	isRunning = true;
+	string tempString;
+	while (getline(splashFile, tempString))
+	{
+		outStream << tempString << endl;
+	}
 }
 
 //drawLevel is used to output our level file.
@@ -103,6 +106,7 @@ void Level::drawLevel(istream &levelFile)
 	{
 		system("color ca");
 	}
+
 	//draw left wall
 	for (int i = 0; i < 29; i++)
 	{
@@ -119,6 +123,7 @@ void Level::drawLevel(istream &levelFile)
 			plot.plot(j,i, SQUARE);
 		}
 	}
+
 	//draw right wall
 	for (int i = 0; i < 29; i++)
 	{
@@ -136,11 +141,7 @@ void Level::drawLevel(istream &levelFile)
 		}
 	}
 
-
-
-
 	//draw blocks
-
 	char blockFile[9][9];
 
 	for (int i = 0; i < 9; i++)
@@ -189,47 +190,6 @@ void Level::drawLevel(istream &levelFile)
 	y = puck.getY();
 
 	plot.plot(x, y, SQUARE);
-
-}
-
-void Level::runLevel()
-{
-	
-}
-
-void Level::clearScreen()
-{
-	plot.clear();
-}
-
-//We can either use startLevel to display the splash screen
-//and keep the game running until endLevel is called.
-void Level::startLevel(istream &splashFile, ostream &outStream)
-{	
-	system("color 07");
-
-	paddle.setXY(37, 28);
-
-	puck.setXY(40, 25);
-
-	isRunning = true;
-	string tempString;
-	while (getline(splashFile, tempString))
-	{
-		outStream << tempString << endl;
-	}
-}
-
-void Level::endLevel()
-{
-
-}
-
-//Or we can do both in nextLevel which will start the next
-//level depending if all blocks are destroyed and end when 
-//all blocks are destroyed.
-void Level::nextLevel()
-{
 
 }
 
@@ -313,24 +273,31 @@ void Level::reversePuck(bool x, bool y)
 		puck.setMY( puck.getMY() * -1 );
 	}
 }
-void Level::setPuck(int x, int y)
-{
-	puck.setXY(x , y);
-}
 
-void Level::setPaddle(int x, int y)
-{
-	paddle.setXY(x , y);
-}
 void Level::removeBlock(int blockX, int blockY)
 {
 	blockX = ( 4 + ( blockX * 8 ) );
 	blockY = ( blockY * 2 );
+	plot.setColorSpecific(cyan);
 	for (int q = 1; q <= 7; q++)
 	{
-		plot.setColorSpecific(cyan);
 		plot.plot((int)blockX + q, (int)blockY, SPACE);
 	}
+}
+
+void Level::removePaddlePuck()
+{
+	plot.setColorSpecific(cyan);
+	for (int q = 0; q < 7; q++)
+	{
+		plot.plot((int)paddle.getX() + q, (int)paddle.getY(), SPACE);
+	}
+	plot.plot((int)puck.getX(), (int)puck.getY(), SPACE);
+}
+
+void Level::clearScreen()
+{
+	plot.clear();
 }
 
 int Level::lives = 3;

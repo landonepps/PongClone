@@ -15,8 +15,7 @@ class Level
 		int levelNum;
 		Puck puck;
 		Paddle paddle;
-		//remove this vv
-		Block block;
+
 		Block blocks[9][9];
 		Plotter plot;
 		static int lives;
@@ -34,7 +33,6 @@ class Level
 		Paddle getPaddle();
 		double getPaddleX();
 		double getPaddleY();
-		Block getBlock(int a, int b);
 		int getBlockX(int a, int b);
 		int getBlockY(int a, int b);
 		void setPuck(int x, int y);
@@ -44,16 +42,10 @@ class Level
 		int getLives();
 		//drawLevel is used to output our level file.
 		void drawLevel(istream &levelFile);
-		void runLevel();
 		void clearScreen();
 		//We can either use startLevel to display the splash screen
 		//and keep the game running until endLevel is called.
 		void startLevel(istream &splashFile, ostream &outStream);
-		void endLevel();
-		//Or we can do both in nextLevel which will start the next
-		//level depending if all blocks are destroyed and end when 
-		//all blocks are destroyed.
-		void nextLevel();
 
 		//paddle functions
 		void moveLeft();
@@ -65,4 +57,6 @@ class Level
 
 		//plotter control
 		void removeBlock(int blockX, int blockY);
+		void removePaddlePuck();
+		void printText(
 };

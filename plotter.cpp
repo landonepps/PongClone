@@ -13,7 +13,6 @@ Plotter::Plotter()
        SetConsoleTextAttribute(hConsoleOutput, green);
 
 }
-
 void Plotter::move(int x, int y)
 {
        coordScreen.X = x;
@@ -21,7 +20,6 @@ void Plotter::move(int x, int y)
        //SetConsoleTextAttribute(hConsoleOutput, c);     
        SetConsoleCursorPosition( hConsoleOutput, coordScreen );
 }
-
 void Plotter::plot(int x, int y, char c)
 {
        coordScreen.X = x;
@@ -31,12 +29,10 @@ void Plotter::plot(int x, int y, char c)
        cout << c;
        cout.flush();
 }
-
 void Plotter::setColor(ink c)
 {
    SetConsoleTextAttribute(hConsoleOutput, c);
 }
-
 void Plotter::setColorSpecific(ink color)
 {
 	if(color == cyan)
@@ -52,12 +48,10 @@ void Plotter::setColorSpecific(ink color)
 		SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	}
 }
-
 void Plotter::clear()
 {
   cls( hConsoleOutput );
 }
-
 void Plotter::cls( HANDLE hConsole )
 {
   COORD coordScreen = { 0, 0 };    // here's where we'll home the cursor

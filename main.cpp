@@ -13,7 +13,7 @@ using namespace std;
 
 void cls( HANDLE hConsole );
 //The total number of levels
-const int MAXLEVEL = 1;
+const int MAXLEVEL = 4;
 //The console size
 const unsigned width = 80, height = 30;
 
@@ -78,7 +78,6 @@ int main ()
 				}
 
 		
-
 				//opens the splashscreen file
 				//naming convention is splash<levelNumber>.txt
 				ifstream splashFile;
@@ -114,15 +113,15 @@ int main ()
 				}
 				_getch();
 
-				//PlaySound(NULL, NULL, NULL);
 				//the main game loop
 				char c;
+				level.setLives(3);
 				while (level.getLives() > 0 )
 				{
 					
 					level.updatePuck();
 					bool continueLoopingSoYouDontHaveToUseABreak = true;
-					for (int i = 0; i < 7 && continueLoopingSoYouDontHaveToUseABreak; i++ )
+					for (int i = 0; i < 9 && continueLoopingSoYouDontHaveToUseABreak; i++ )
 					{
 						Sleep(10);
 
@@ -145,23 +144,41 @@ int main ()
 							}
 						}
 
-						//Paddle thePaddle = level.getPaddle();
-
 						int blockLocX = -1;
 						int blockLocY = -1;
 						collided = false;
 
+						//loop for paddle collision detection
 						for (int i = 0; i < 7; i++)
 						{
-							if ( ( level.getPaddleX() + i == level.getPuckX() ) &&
-								( level.getPaddleY() - 1 == level.getPuckY() ) )
+							if (
+									( 
+										level.getPaddleX() + i == level.getPuckX()
+									)
+									&&
+									(
+										level.getPaddleY() - 1 == level.getPuckY()
+									)
+							   )
 							{
 								level.reversePuck( false, true );
 								collided = true;
 							}
 						}
 
-						//loop for blocks
+						//for sides collision detection--but not bottom
+						if (level.getPuckX() > 76 || level.getPuckX() < 4)
+						{
+							level.reversePuck( true, false );
+							collided = true;
+						}
+						if ( level.getPuckY() < 1 )
+						{
+							level.reversePuck( false, true );
+							collided = true;
+						}
+
+						//loop for blocks collision detection
 						for (int k = 0; k < 9; k++)
 						{
 							for (int j = 0; j < 9; j++)
@@ -192,6 +209,26 @@ int main ()
 										}
 									}
 
+									if ( ( level.getBlockX(k, j) - 1 == level.getPuckX() ) &&
+											( level.getBlockY(k, j) == level.getPuckY() ) )
+										{
+											level.reversePuck( true, false );
+											blockLocX = k;
+											blockLocY = j;
+											collided = true;
+											blockHit = true;
+										}
+
+									if ( ( level.getBlockX(k, j) + 9 == level.getPuckX() ) &&
+											( level.getBlockY(k, j) == level.getPuckY() ) )
+										{
+											level.reversePuck( true, false );
+											blockLocX = k;
+											blockLocY = j;
+											collided = true;
+											blockHit = true;
+										}
+
 									if ( blockHit )
 									{
 										Beep(200,20); //makes beep when block is hit.
@@ -204,12 +241,20 @@ int main ()
 						level.setBlockX(blockLocX, blockLocY, -1);
 						level.setBlockY(blockLocX, blockLocY, -1);
 
-						if ( level.getPuckY() > 28 )
+						//bottom detection
+						if ( level.getPuckY() > 27 )
 						{
+
+							_getch();
+							level.reversePuck( false, true );
 							int temp = level.getLives();
 							level.setLives( temp - 1 );
+							level.removePaddlePuck();
 							level.setPaddle(37, 28);
-							level.setPuck(30, 25);
+							level.setPuck(39, 25);
+							level.updatePuck();
+							level.moveLeft();
+							level.moveRight();
 							_getch();
 							continueLoopingSoYouDontHaveToUseABreak = false;
 						}
