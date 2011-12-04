@@ -313,7 +313,15 @@ void Level::reversePuck(bool x, bool y)
 		puck.setMY( puck.getMY() * -1 );
 	}
 }
+void Level::setPuck(int x, int y)
+{
+	puck.setXY(x , y);
+}
 
+void Level::setPaddle(int x, int y)
+{
+	paddle.setXY(x , y);
+}
 void Level::removeBlock(int blockX, int blockY)
 {
 	blockX = ( 4 + ( blockX * 8 ) );
