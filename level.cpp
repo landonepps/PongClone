@@ -287,7 +287,14 @@ void Level::removeBlock(int blockX, int blockY)
 {
 	blockX = ( 4 + ( blockX * 8 ) );
 	blockY = ( blockY * 2 );
-	plot.setColorSpecific(cyan);
+	if(levelNum <= 3)
+	{
+		plot.setColorSpecific(cyan);
+	}
+	else
+	{
+		plot.setColorSpecific(red);
+	}
 	for (int q = 1; q <= 7; q++)
 	{
 		plot.plot((int)blockX + q, (int)blockY, SPACE);
@@ -296,7 +303,14 @@ void Level::removeBlock(int blockX, int blockY)
 
 void Level::removePaddlePuck()
 {
-	plot.setColorSpecific(cyan);
+	if(levelNum <= 3)
+	{
+		plot.setColorSpecific(cyan);
+	}
+	else
+	{
+		plot.setColorSpecific(red);
+	}
 	for (int q = 0; q < 7; q++)
 	{
 		plot.plot((int)paddle.getX() + q, (int)paddle.getY(), SPACE);
@@ -311,7 +325,14 @@ void Level::clearScreen()
 
 void Level::printText(string text)
 {
-	plot.setColorSpecific(cyan);
+	if(levelNum <= 3)
+	{
+		plot.setColorSpecific(cyan);
+	}
+	else
+	{
+		plot.setColorSpecific(red);
+	}
 	plot.move(1, 29);
 	cout << text;
 }
@@ -320,7 +341,14 @@ void Level::clearText()
 {
 	for(int i = 1; i < 79; i++)
 	{
-		plot.setColorSpecific(cyan);
+		if(levelNum <=3)
+		{
+			plot.setColorSpecific(cyan);
+		}
+		else
+		{
+			plot.setColorSpecific(red);
+		}
 		plot.plot(i, 29, SPACE);
 	}
 }

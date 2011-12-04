@@ -13,7 +13,7 @@ using namespace std;
 
 void cls( HANDLE hConsole );
 //The total number of levels
-const int MAXLEVEL = 4;
+const int MAXLEVEL = 6;
 //The console size
 const unsigned width = 80, height = 30;
 
