@@ -101,12 +101,12 @@ int main ()
 		
 				//gives the level the level file
 				level.drawLevel(levelFile);
-				if(levelNum <= 3)
+				if(levelNum == 1)
 				{
 					PlaySound(NULL, NULL, NULL);
 					PlaySound("./DasPeaceful.wav", NULL, SND_FILENAME | SND_ASYNC);
 				}
-				else
+				else if(levelNum == 4)
 				{
 					PlaySound(NULL, NULL, NULL);
 					PlaySound("./DasEpic.wav", NULL, SND_FILENAME | SND_ASYNC);
