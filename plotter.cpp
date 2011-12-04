@@ -37,12 +37,13 @@ void Plotter::setColorSpecific(ink color)
 {
 	if(color == cyan)
 	{
-		SetConsoleTextAttribute(hConsoleOutput, 0 | FOREGROUND_INTENSITY
+		SetConsoleTextAttribute(hConsoleOutput, NULL | FOREGROUND_INTENSITY
 			| BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 	}
 	else if(color == red)
 	{
-		SetConsoleTextAttribute(hConsoleOutput, BACKGROUND_RED | BACKGROUND_INTENSITY);
+		SetConsoleTextAttribute(hConsoleOutput, NULL | FOREGROUND_INTENSITY |
+			BACKGROUND_RED | BACKGROUND_INTENSITY);
 	}
 	else if(color == black)
 	{
