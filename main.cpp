@@ -42,7 +42,7 @@ int main ()
 	char choice = ' ';
 	int levelNum = 0;
 	int blockNum = 1;
-	int score = 0;
+	double score = -140;
 	ifstream menuFile;
 	string str;
 	menuFile.open("menu.txt");
@@ -62,9 +62,8 @@ int main ()
 		choice = _getch();
 		if(choice == 's' || choice == 'S')
 		{
-			for ( levelNum=1; levelNum<=MAXLEVEL; levelNum++)
+			for ( levelNum = 1; levelNum <= MAXLEVEL; levelNum++)
 			{
-				score = 0;
 				//Create a new level and tell it which number it is
 				Level level(levelNum);
 				
@@ -156,11 +155,11 @@ int main ()
 						collided = false;
 
 						//loop for paddle collision detection
-						for (int i = 0; i < 9; i++)
+						for (int i = 1; i <= 9; i++)
 						{
 							if (
 									( 
-										level.getPaddleX() + i - 1 == level.getPuckX()
+										level.getPaddleX() + i - 2 == level.getPuckX()
 									)
 									&&
 									(
@@ -168,7 +167,18 @@ int main ()
 									)
 							   )
 							{
-								level.reversePuck( false, true );
+								if ( i <= 4 )
+								{
+									level.setPuckMXY(-1, -1);
+								}
+								else if ( i == 5 )
+								{
+									level.setPuckMXY(0, -1);
+								}
+								else
+								{
+									level.setPuckMXY(1, -1);
+								}
 								collided = true;
 							}
 						}
@@ -185,7 +195,7 @@ int main ()
 							collided = true;
 						}
 
-						//bottom detection
+						//bottom collision detection
 						if ( level.getPuckY() > 27 )
 						{
 							level.setLives( level.getLives() - 1 );
@@ -204,7 +214,9 @@ int main ()
 								level.moveRight();
 
 								level.pauseGame( score );
-
+								stringstream scoreStream;
+								scoreStream << "Score: " << score << "            ";
+								level.printText( scoreStream.str() );
 								continueLoopingSoYouDontHaveToUseABreak = false;
 							}
 						}
@@ -263,7 +275,7 @@ int main ()
 										Beep(200,20); //makes beep when block is hit.
 										level.reversePuck( reverseX, reverseY );
 										level.removeBlock(k, j);
-										score = score + 100;
+										score = score + 10;
 										stringstream scoreStream;
 										scoreStream << "Score: " << score << "            ";
 										level.printText( scoreStream.str() );
@@ -289,9 +301,6 @@ int main ()
 						}
 					}
 				} //end level loop
-
-
-
 				if(blockNum != 0)
 				{
 					if(levelNum < 3)
@@ -317,16 +326,36 @@ int main ()
 						}
 						PlaySound(NULL, NULL, NULL);
 						PlaySound("./youlose.wav", NULL, SND_FILENAME | SND_ASYNC);
+						levelNum = 100;
+						level.pauseGame( score );
+						score = -1400;
+						
 					}
 				}
+				else if (levelNum == 6)
+				{
+					level.clearScreen();
+					SetConsoleTextAttribute(hCon, NULL | FOREGROUND_INTENSITY);
+					ifstream loseFile;
+					loseFile.open("win.txt");
+					if (!loseFile)
+					{
+						level.printText("Error opening win screen file");
+						return 1;
+					}
 
-				level.pauseGame( score );
+					string tempString;
+					while (getline(loseFile, tempString))
+					{
+						cout << tempString << endl;
+					}
+					levelNum = 100;
+					level.pauseGame( score );
+					score = -140;
+				}
 
 				level.clearScreen();
-
 			}
-			//macbook air gift
-			levelNum = 1;
 		}
 		else if(choice == 'a' || choice == 'A')
 		{
