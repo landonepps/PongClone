@@ -208,6 +208,9 @@ int main ()
 						{
 							int temp = level.getLives();
 							level.setLives( temp - 1 );
+							level.setPaddle(37, 28);
+							level.setPuck(30, 25);
+							_getch();
 							continueLoopingSoYouDontHaveToUseABreak = false;
 						}
 
@@ -225,6 +228,7 @@ int main ()
 
 				level.clearScreen();
 			}
+			//macbook air gift
 		}
 		else if(choice == 'a' || choice == 'A')
 		{
