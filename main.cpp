@@ -245,7 +245,8 @@ int main ()
 						if ( level.getPuckY() > 27 )
 						{
 
-							_getch();
+							level.pauseGame();
+
 							level.reversePuck( false, true );
 							int temp = level.getLives();
 							level.setLives( temp - 1 );
@@ -255,7 +256,9 @@ int main ()
 							level.updatePuck();
 							level.moveLeft();
 							level.moveRight();
-							_getch();
+
+							level.pauseGame();
+
 							continueLoopingSoYouDontHaveToUseABreak = false;
 						}
 

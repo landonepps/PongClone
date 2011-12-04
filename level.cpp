@@ -193,6 +193,15 @@ void Level::drawLevel(istream &levelFile)
 
 }
 
+void Level::pauseGame()
+{
+	printText("Press Space to Continue");
+	while (_getch() != ' ')
+	{
+	}
+	clearText();
+}
+
 void Level::moveLeft()
 {
 		int x = paddle.getX();
@@ -298,6 +307,22 @@ void Level::removePaddlePuck()
 void Level::clearScreen()
 {
 	plot.clear();
+}
+
+void Level::printText(string text)
+{
+	plot.setColorSpecific(cyan);
+	plot.move(1, 29);
+	cout << text;
+}
+
+void Level::clearText()
+{
+	for(int i = 1; i < 79; i++)
+	{
+		plot.setColorSpecific(cyan);
+		plot.plot(i, 29, SPACE);
+	}
 }
 
 int Level::lives = 3;

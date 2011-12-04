@@ -46,6 +46,7 @@ class Level
 		//We can either use startLevel to display the splash screen
 		//and keep the game running until endLevel is called.
 		void startLevel(istream &splashFile, ostream &outStream);
+		void pauseGame();
 
 		//paddle functions
 		void moveLeft();
@@ -58,5 +59,6 @@ class Level
 		//plotter control
 		void removeBlock(int blockX, int blockY);
 		void removePaddlePuck();
-		//void printText(
+		void printText(string text);
+		void clearText();
 };
