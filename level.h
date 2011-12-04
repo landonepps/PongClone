@@ -39,6 +39,7 @@ class Level
 		int getBlockX(int a, int b);
 		int getBlockY(int a, int b);
 		void setPuck(int x, int y);
+		void setPuckMXY(double x, double y);
 		void setPaddle(int x, int y);
 		void setBlockX(int a, int b, int x);
 		void setBlockY(int a, int b, int y);

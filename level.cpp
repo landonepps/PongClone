@@ -52,6 +52,11 @@ void Level::setPuck(int x, int y)
 {
 	puck.setXY(x , y);
 }
+void Level::setPuckMXY(double x, double y)
+{
+	puck.setMX(x);
+	puck.setMY(y);
+}
 void Level::setPaddle(int x, int y)
 {
 	paddle.setXY(x , y);
