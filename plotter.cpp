@@ -37,7 +37,8 @@ void Plotter::setColorSpecific(ink color)
 {
 	if(color == cyan)
 	{
-		SetConsoleTextAttribute(hConsoleOutput, BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
+		SetConsoleTextAttribute(hConsoleOutput, 0 | FOREGROUND_INTENSITY
+			| BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 	}
 	else if(color == red)
 	{
@@ -45,7 +46,8 @@ void Plotter::setColorSpecific(ink color)
 	}
 	else if(color == black)
 	{
-		SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		SetConsoleTextAttribute(hConsoleOutput, 0 | FOREGROUND_INTENSITY
+			| BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 	}
 }
 void Plotter::clear()

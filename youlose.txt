@@ -4,21 +4,21 @@
                 .MD8Z8ZN
                 :NMM8MMD.      ___________________________________________
                 ?NNNDDDM.      \       ******** GAME OVER ********        |
-               .DNNMMNMN=       |   I used to be a paddle like you,       |
+               .DNNMMNMN=       |   I used to be a paddle like you, but   |
             .,Z$DDNNMD8$?~ .    |  then I took an adventurer to the knee. |
-         . DO8OOMN8DNDN$ND88ZN.  -----------------------------------------
+         . DO8OOMN8DNDN$ND88Z.  -------------------------------------------
         ..DD8DZNDDD8DOZDO8O888.
         .NNMNMM8NNDDO8ZZO8MNDDI.
         +DNNMMMNMMMOD8OOZONDDOO.
        ,DD88MMDDMMDD888ZOM7DOOZ.
       .ZDNO.MMMMDMNDDND8OM.:N87I.
       D888. MMNNMDDNDDN7M+  8OO8O$:.
-     .8O8+. MMDNNDNNMMNZI$..8DDMMMMM+.
+     .8O8+. MMDNNDNNMMNZI$.:DDMMMMM+.
      8$7 ..MNMNDDMNDNMMMN8~7NND888NM:.
-     .87,  MDDMNDNDDDDDMMN$MDDMD8N8DNM.
+     .87,  MDDMNDNDDDDDMMN$MDDMD8N8NM.
       Z$+.?MNMDDNNDDNDMMMNMONONDMNDDDM.
      .O8D.DNNDDNNDD8ZMNMNNNMDDDDMMD8DM
       .7=,DNN8NDDDO8OMMMNM8NN8NDNDO8M~
         :DNNNNDNDD88MMMNMDDNMD8DNDDM,
-        +DNDDNDDD8D8MMMMMDN8DD8DNNM$
-          MDND8OD8$NMMMMNN'ZDD8DMD+'
+        +DNDDNDDD8D8MMMMMD'8DD8DNNM$,
+          MDND8OD8$NMMMMNN 'TD8DM+\\
