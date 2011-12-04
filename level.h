@@ -58,5 +58,5 @@ class Level
 		//plotter control
 		void removeBlock(int blockX, int blockY);
 		void removePaddlePuck();
-		void printText(
+		//void printText(
 };
