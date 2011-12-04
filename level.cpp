@@ -207,9 +207,11 @@ void Level::drawLevel(istream &levelFile)
 
 }
 
-void Level::pauseGame()
+void Level::pauseGame( int score )
 {
-	printText("Press Space to Continue");
+	stringstream pauseText;
+	pauseText << "Press Space to Continue...  Score: " << score << " ";
+	printText( pauseText.str() );
 	while (_getch() != ' ')
 	{
 	}

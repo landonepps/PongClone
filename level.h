@@ -49,7 +49,7 @@ class Level
 		//We can either use startLevel to display the splash screen
 		//and keep the game running until endLevel is called.
 		void startLevel(istream &splashFile, ostream &outStream);
-		void pauseGame();
+		void pauseGame( int );
 
 		//paddle functions
 		void moveLeft();
