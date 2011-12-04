@@ -39,8 +39,10 @@ int main ()
 	
 
 	//define variables
-	char choice;
+	char choice = ' ';
+	int levelNum = 0;
 	int blockNum = 1;
+	int score = 0;
 	ifstream menuFile;
 	string str;
 	menuFile.open("menu.txt");
@@ -54,13 +56,15 @@ int main ()
 
 	do
 	{
+		SetConsoleTextAttribute(hCon, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		cls(hCon);
 		cout << stringythingy.str();
 		choice = _getch();
 		if(choice == 's' || choice == 'S')
 		{
-			for (int levelNum=1; levelNum<=MAXLEVEL; levelNum++)
+			for ( levelNum=6; levelNum<=MAXLEVEL; levelNum++)
 			{
+				score = 0;
 				//Create a new level and tell it which number it is
 				Level level(levelNum);
 				
@@ -181,6 +185,30 @@ int main ()
 							collided = true;
 						}
 
+						//bottom detection
+						if ( level.getPuckY() > 27 )
+						{
+							level.setLives( level.getLives() - 1 );
+
+							if( level.getLives() > 0  )
+							{
+								level.pauseGame( score );
+
+								level.reversePuck( false, true );
+							
+								level.removePaddlePuck();
+								level.setPaddle(37, 28);
+								level.setPuck(40, 26);
+								level.updatePuck();
+								level.moveLeft();
+								level.moveRight();
+
+								level.pauseGame( score );
+
+								continueLoopingSoYouDontHaveToUseABreak = false;
+							}
+						}
+
 						//loop for blocks collision detection
 						for (int k = 0; k < 9; k++)
 						{
@@ -218,7 +246,7 @@ int main ()
 
 									for (int i = 0; i < 9; i++)
 									{
-										if ( ( level.getBlockX(k, j) + i + 1 == level.getPuckX() ) &&
+										if ( ( level.getBlockX(k, j) + i - 1 == level.getPuckX() ) &&
 											( level.getBlockY(k, j) == level.getPuckY() ) )
 										{
 											reverseX = true;
@@ -235,45 +263,34 @@ int main ()
 										Beep(200,20); //makes beep when block is hit.
 										level.reversePuck( reverseX, reverseY );
 										level.removeBlock(k, j);
+										score = score + 100;
+										stringstream scoreStream;
+										scoreStream << "Score: " << score << "            ";
+										level.printText( scoreStream.str() );
 										blockNum--;
 									}
 								}
 							}
 						}
 
-						level.setBlockX(blockLocX, blockLocY, -1);
-						level.setBlockY(blockLocX, blockLocY, -1);
-
-						//bottom detection
-						if ( level.getPuckY() > 27 )
+						if(blockLocX != -1)
 						{
+							level.setBlockX(blockLocX, blockLocY, -1);
+						}
 
-							level.pauseGame();
-
-							level.reversePuck( false, true );
-							int temp = level.getLives();
-							level.setLives( temp - 1 );
-							level.removePaddlePuck();
-							level.setPaddle(37, 28);
-							level.setPuck(39, 25);
-							level.updatePuck();
-							level.moveLeft();
-							level.moveRight();
-
-							level.pauseGame();
-
-							continueLoopingSoYouDontHaveToUseABreak = false;
+						if(blockLocY != -1)
+						{
+							level.setBlockY(blockLocX, blockLocY, -1);
 						}
 
 						if( collided )
 						{
 							level.updatePuck();
 						}
-						
-						//flush input buffer maybe to reduce lag?
-						//cin.clear();
 					}
 				} //end level loop
+
+
 
 				if(blockNum != 0)
 				{
@@ -283,21 +300,33 @@ int main ()
 					}
 					else
 					{
+						level.clearScreen();
+						SetConsoleTextAttribute(hCon, NULL | FOREGROUND_INTENSITY);
 						ifstream loseFile;
-						loseFile.open("youlose.txt" );
+						loseFile.open("youlose.txt");
 						if (!loseFile)
 						{
 							level.printText("Error opening lose screen file");
 							return 1;
 						}
+
+						string tempString;
+						while (getline(loseFile, tempString))
+						{
+							cout << tempString << endl;
+						}
+						PlaySound(NULL, NULL, NULL);
+						PlaySound("./youlose.wav", NULL, SND_FILENAME | SND_ASYNC);
 					}
 				}
 
-				_getch();
+				level.pauseGame( score );
 
 				level.clearScreen();
+
 			}
 			//macbook air gift
+			levelNum = 1;
 		}
 		else if(choice == 'a' || choice == 'A')
 		{
