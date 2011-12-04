@@ -11,7 +11,6 @@ Puck::Puck()
 	mx = 1;
 	my = -1;
 }
-
 Puck::Puck(double x1, double y1, double mx1, double my1)
 {
 	x = x1;
@@ -19,11 +18,9 @@ Puck::Puck(double x1, double y1, double mx1, double my1)
 	mx = mx1;
 	my = my1;
 }
-
 Puck::~Puck()
 {
 }
-
 void Puck::setX(double x1)
 {
 	x = x1;
@@ -73,18 +70,7 @@ string Puck::toString()
 }
 
 void Puck::movePuck()
-{
-	//for reference vv
-	
-	if (x > 76 || x < 4)
-	{
-		mx *= -1;
-	}
-	if ( y > 28 || y < 1)
-	{
-		my *= -1;
-	}
-	
+{	
 	x += mx;
 	y += my;
 }
