@@ -118,7 +118,7 @@ void Level::drawLevel(istream &levelFile)
 			}
 			else
 			{
-				plot.setColor(yellow);
+				plot.setColor(black);
 			}
 			plot.plot(j,i, SQUARE);
 		}
@@ -135,7 +135,7 @@ void Level::drawLevel(istream &levelFile)
 			}
 			else
 			{
-				plot.setColor(yellow);
+				plot.setColor(black);
 			}
 			plot.plot(j,i, SQUARE);
 		}
@@ -165,7 +165,14 @@ void Level::drawLevel(istream &levelFile)
 
 				for (int q = 1; q <= 7; q++)
 				{
-					plot.setColor(darkred);
+					if(levelNum <= 3)
+					{
+						plot.setColor(darkred);
+					}
+					else
+					{
+						plot.setColor(white);
+					}
 					plot.plot((int)blockX + q, (int)blockY, SQUARE);
 				}
 				
