@@ -62,7 +62,7 @@ int main ()
 		choice = _getch();
 		if(choice == 's' || choice == 'S')
 		{
-			for ( levelNum=6; levelNum<=MAXLEVEL; levelNum++)
+			for ( levelNum=1; levelNum<=MAXLEVEL; levelNum++)
 			{
 				score = 0;
 				//Create a new level and tell it which number it is
