@@ -36,6 +36,7 @@ int main ()
 
 	//self explanitory
 	PlaySound("./launch.wav", NULL, SND_FILENAME | SND_ASYNC);
+	
 
 	//define variables
 	char choice;
@@ -61,7 +62,7 @@ int main ()
 			{
 				//Create a new level and tell it which number it is
 				Level level(levelNum);
-
+				
 				level.clearScreen();
 
 				//opens the level file
@@ -101,14 +102,24 @@ int main ()
 		
 				//gives the level the level file
 				level.drawLevel(levelFile);
-
+				if(levelNum <= 3)
+				{
+					PlaySound(NULL, NULL, NULL);
+					PlaySound("./DasPeaceful.wav", NULL, SND_FILENAME | SND_ASYNC);
+				}
+				else
+				{
+					PlaySound(NULL, NULL, NULL);
+					PlaySound("./DasEpic.wav", NULL, SND_FILENAME | SND_ASYNC);
+				}
 				_getch();
 
+				//PlaySound(NULL, NULL, NULL);
 				//the main game loop
 				char c;
 				while (level.getLives() > 0 )
 				{
-
+					
 					level.updatePuck();
 					bool continueLoopingSoYouDontHaveToUseABreak = true;
 					for (int i = 0; i < 7 && continueLoopingSoYouDontHaveToUseABreak; i++ )
@@ -183,6 +194,7 @@ int main ()
 
 									if ( blockHit )
 									{
+										Beep(200,20); //makes beep when block is hit.
 										level.removeBlock(k, j);
 									}
 								}
